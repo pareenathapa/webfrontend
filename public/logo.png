@@ -1,0 +1,12 @@
+java
+Copy code
+my-react-app/
+├── public/
+│   ├── logo.png
+│   └── index.html
+├── src/
+│   ├── components/
+│   │   ├── Register.js
+│   │   └── Login.js
+│   └── App.js
+└── package.json

@@ -1,0 +1,15 @@
+/* Add these styles to your existing CSS file, e.g., ProductDetail.css */
+.add-to-cart-btn {
+  background-color: #28a745; /* Bootstrap success color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #218838; /* Slightly darker green */
+}
