@@ -1,84 +1,100 @@
 /* General navbar styling */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Logo section styling */
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .nav-logo img {
-    height: 40px;
-    margin-right: 10px;
-  }
-  
-  .nav-logo p {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  
-  .nav-menu {
-    display: flex;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav-menu li {
-    margin: 0 15px;
-    font-size: 1em;
-    cursor: pointer;
-    color: #333;
-    transition: color 0.3s ease;
-  }
-  
-  /* Specific hover effects for Home, Our Jewelry, and About Us */
-  .nav-menu li:nth-child(1):hover, /* Home */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px !important;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo section styling */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nav-logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.nav-logo p {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+}
+
+.nav-menu {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li {
+  margin: 0 15px;
+  font-size: 1em;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+/* Specific hover effects for Home, Our Jewelry, and About Us */
+.nav-menu li:nth-child(1):hover, /* Home */
   .nav-menu li:nth-child(2):hover, /* Our Jewelry */
-  .nav-menu li:nth-child(3):hover { /* About Us */
-    color: #007BFF;
-    font-weight: bold;
-  }
-  
-  /* Login and cart section styling */
-  .nav-login-cart {
-    display: flex;
-    align-items: center;
-  }
-  
-  .nav-login-cart button {
-    margin-right: 15px;
-    padding: 5px 10px;
-    font-size: 1em;
-    cursor: pointer;
-    border: none;
-    background-color: #007BFF;
-    color: white;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .nav-login-cart button:hover {
-    background-color: #0056b3;
-  }
-  
-  .nav-login-cart img {
-    height: 30px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
-  .nav-login-cart img:hover {
-    transform: scale(1.1);
-  }
-  
+  .nav-menu li:nth-child(3):hover {
+  /* About Us */
+  color: #007bff;
+  font-weight: bold;
+}
+
+/* Login and cart section styling */
+.nav-login-cart {
+  display: flex;
+  align-items: center;
+}
+
+.nav-login-cart button {
+  margin-right: 15px;
+  padding: 5px 10px;
+  font-size: 1em;
+  cursor: pointer;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-login-cart button:hover {
+  background-color: #0056b3;
+}
+
+.nav-login-cart img {
+  height: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.nav-login-cart img:hover {
+  transform: scale(1.1);
+}
+
+.cart-box {
+  position: relative;
+}
+.product-number {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: red;
+  color: #fff;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  right: -10px;
+  top: -10px;
+}

@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/homepage/Home';
-import Jewelry from './pages/homepage/Jewelery'; 
-import About from './pages/homepage/About';
-import Login from './pages/login/Login';
-import Register from './pages/register/Register';
-import Navbar from './Components/Navbar/Navbar';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Cart from './pages/homepage/AddToCart';
-import ProductDetail from './pages/homepage/ProductDetail';
-import AdminDashboard from './pages/admin/AdminDashboard';
-import AdminUpdateProduct from './pages/admin/AdminUpdateProduct';
+import React, { useState } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/homepage/Home";
+import Jewelry from "./pages/homepage/Jewelery";
+import About from "./pages/homepage/About";
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
+import Navbar from "./Components/Navbar/Navbar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+// import Cart from "./pages/homepage/AddToCart";
+import ProductDetail from "./pages/homepage/ProductDetail";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminUpdateProduct from "./pages/admin/AdminUpdateProduct";
+import { CartProductList } from "./Components/CartProductList";
+import { CartProvider } from "./Components/Context/CartContext";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -44,21 +46,33 @@ function App() {
   };
 
   return (
-    <Router>
-      <Navbar />
-      <ToastContainer />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/jewelry' element={<Jewelry onAdd={onAdd} />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/cart' element={<Cart cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='product/:id' element={< ProductDetail />} />
-        <Route path='/admin/dashboard' element={<AdminDashboard />} />
-        <Route path='/admin/jewelery/update/:id' element={<AdminUpdateProduct />} />
-      </Routes>
-    </Router>
+    <CartProvider>
+      <Router>
+        <Navbar />
+        <ToastContainer />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/jewelry" element={<Jewelry onAdd={onAdd} />} />
+          <Route path="/about" element={<About />} />
+          {/* <Route
+          path="/cart"
+          element={
+            <Cart cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} />
+          }
+        /> */}
+
+          <Route path="/cart" element={<CartProductList />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="product/:id" element={<ProductDetail />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route
+            path="/admin/jewelery/update/:id"
+            element={<AdminUpdateProduct />}
+          />
+        </Routes>
+      </Router>
+    </CartProvider>
   );
 }
 
