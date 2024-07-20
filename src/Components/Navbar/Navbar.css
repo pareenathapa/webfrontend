@@ -37,8 +37,11 @@
   margin: 0 15px;
   font-size: 1em;
   cursor: pointer;
-  color: #333;
+  /* text-transform: uppercase; */
+  /* color: #333; */
   transition: color 0.3s ease;
+  line-height: 1.7;
+  font-weight: 600;
 }
 
 /* Specific hover effects for Home, Our Jewelry, and About Us */
@@ -97,4 +100,8 @@
   border-radius: 50%;
   right: -10px;
   top: -10px;
+}
+
+.activeroute {
+  color: #38a1db;
 }

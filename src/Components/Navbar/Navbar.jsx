@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 import logo from "../Assets/logo.png";
 import cart from "../Assets/cart.png";
 import { useCart } from "../Context/CartContext";
+import { navigation } from "../../utills/Constants";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const router = useLocation();
+
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
-  // Check if the item is already in the cart
   const { cartProduct } = useCart();
 
   const handleNavigation = (path) => {
@@ -37,9 +39,14 @@ const Navbar = () => {
         <p className="fw-bold">GemChase</p>
       </div>
       <ul className="nav-menu">
-        <li onClick={() => handleNavigation("/")}>Home</li>
-        <li onClick={() => handleNavigation("/jewelry")}>Our Jewelry</li>
-        <li onClick={() => handleNavigation("/about")}>About Us</li>
+        {navigation.map((linkItem) => (
+          <li
+            onClick={() => handleNavigation(linkItem.link)}
+            className={router.pathname === linkItem.link ? "activeroute" : ""}
+          >
+            {linkItem.routeName}
+          </li>
+        ))}
       </ul>
       <div className="nav-login-cart">
         {isLoggedIn ? (
