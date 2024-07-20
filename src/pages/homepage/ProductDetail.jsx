@@ -34,7 +34,6 @@ const ProductDetail = () => {
 
     fetchProduct();
   }, [id]);
-  console.log("product name", product);
 
   //   const handleAddToCart = () => {
   //     const updatedCart = [...cart, product];
@@ -80,7 +79,7 @@ const ProductDetail = () => {
             className="img-fluid rounded product-img"
           />
         </div>
-        <div className="col-md-6 p-5 ">
+        <div className="col-md-6 p-5">
           <h1 className="product-title text-capitalize">
             {product.jeweleryName}
           </h1>
@@ -96,7 +95,7 @@ const ProductDetail = () => {
           >
             Add to Cart
           </button>
-          <div className="mt-2">
+          <div className="mt-3">
             <UserReview />
           </div>
         </div>

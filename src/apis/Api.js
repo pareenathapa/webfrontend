@@ -16,7 +16,8 @@ const config = {
 
 export const loginUserApi = (data) => Api.post("/api/user/login", data);
 export const registerUserApi = (data) => Api.post("/api/user/create", data);
-export const createJeweleryApi = (data) => Api.post("/api/user/create", data);
+export const createJeweleryApi = (data) =>
+  Api.post("api/jewelery/create", data);
 
 export const getAllJeweleryApi = () =>
   Api.get("/api/jewelery/get_all_jewelerys");
