@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../CSS/Home.css";
 import banner from "../../Components/Assets/banner.png";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -15,6 +17,7 @@ const Home = () => {
         const data = await response.json();
         if (data.success) {
           setProducts(data.jewelerys);
+          setLoading(false);
         } else {
           console.error(data.message);
         }
@@ -26,6 +29,9 @@ const Home = () => {
     fetchProducts();
   }, []);
 
+  const handleNavigation = (id) => {
+    navigate(`/product/${id}`);
+  };
   console.log("products", products);
 
   return (
@@ -48,19 +54,26 @@ const Home = () => {
       </section>
       <section className="featured-products">
         <h2>Featured Products</h2>
-        <div className="product-list">
-          {products.map((product) => (
-            <div key={product._id} className="product-item">
-              <Link to={`/product/${product._id}`}>
+        {loading ? (
+          <div className="text-center">Products are loading....</div>
+        ) : (
+          <div className="product-list">
+            {products.map((product) => (
+              <div
+                key={product._id}
+                className="product-item"
+                id="product-card"
+                onClick={() => handleNavigation(product._id)}
+              >
                 <img
-                  src={`http://localhost:5000/jewelerys/${product.jeweleryImage}`}
+                  src={`http://localhost:1000/jewelerys/${product.jeweleryImage}`}
                   alt={product.jeweleryName}
                 />
-                <div>{product.jeweleryName}</div>
-              </Link>
-            </div>
-          ))}
-        </div>
+                <div className="product-name">{product.jeweleryName}</div>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
     </div>
   );

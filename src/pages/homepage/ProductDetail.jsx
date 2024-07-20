@@ -16,7 +16,7 @@ const ProductDetail = () => {
     const fetchProduct = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/jewelery/get_single_jewelery/${id}`
+          `http://localhost:1000/api/jewelery/get_single_jewelery/${id}`
         );
         const data = await response.json();
         if (data.success) {
@@ -74,7 +74,7 @@ const ProductDetail = () => {
       <div className="row d-flex align-item-center justify-content-center">
         <div className="col-md-5">
           <img
-            src={`http://localhost:5000/jewelerys/${product.jeweleryImage}`}
+            src={`http://localhost:1000/jewelerys/${product.jeweleryImage}`}
             alt={product.jeweleryName}
             className="img-fluid rounded product-img"
           />
