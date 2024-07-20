@@ -4,6 +4,7 @@ import Rating from "../../Components/Ratings/Ratings";
 import "../CSS/ProductDetails.css";
 import { AddToCartModal } from "../../Components/AddToCartModal";
 import { useCart } from "../../Components/Context/CartContext";
+import { UserReview } from "../../Components/UserReviews";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -70,7 +71,7 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className="container mt-5">
+    <div className=" mt-5">
       <div className="row d-flex align-item-center justify-content-center">
         <div className="col-md-5">
           <img
@@ -79,7 +80,7 @@ const ProductDetail = () => {
             className="img-fluid rounded product-img"
           />
         </div>
-        <div className="col-md-5 p-5 ">
+        <div className="col-md-6 p-5 ">
           <h1 className="product-title text-capitalize">
             {product.jeweleryName}
           </h1>
@@ -95,14 +96,11 @@ const ProductDetail = () => {
           >
             Add to Cart
           </button>
+          <div className="mt-2">
+            <UserReview />
+          </div>
         </div>
       </div>
-
-      {/* <AddToCartModal
-        modal={modal}
-        toggle={handleOpenToCartModal}
-        handleAddToCart={() => }
-      /> */}
     </div>
   );
 };
