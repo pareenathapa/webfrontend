@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../CSS/Home.css";
 import banner from "../../Components/Assets/banner.png";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:1000/api/jewelery/get_all_jewelerys"
-        );
+        const response = await fetch("http://localhost:5000/api/jewelry/");
         const data = await response.json();
+        console.log(`apple${data}`);
         if (data.success) {
-          setProducts(data.jewelerys);
-          setLoading(false);
+          setProducts(data.data);
         } else {
           console.error(data.message);
         }
@@ -29,16 +25,12 @@ const Home = () => {
     fetchProducts();
   }, []);
 
-  const handleNavigation = (id) => {
-    navigate(`/product/${id}`);
-  };
-  console.log("products", products);
-
   return (
     <div className="home-container">
       <section className="banner">
         <img src={banner} alt="Banner" />
       </section>
+
       <section className="gold-prices">
         <div className="date-info">
           <div>2081</div>
@@ -52,28 +44,22 @@ const Home = () => {
           <div>Silver per tola: NRs 1665/-</div>
         </div>
       </section>
+
       <section className="featured-products">
         <h2>Featured Products</h2>
-        {loading ? (
-          <div className="text-center">Products are loading....</div>
-        ) : (
-          <div className="product-list">
-            {products.map((product) => (
-              <div
-                key={product._id}
-                className="product-item"
-                id="product-card"
-                onClick={() => handleNavigation(product._id)}
-              >
+        <div className="product-list">
+          {products.map((product) => (
+            <div key={product._id} className="product-item">
+              <Link to={`/product/${product._id}`}>
                 <img
-                  src={`http://localhost:1000/jewelerys/${product.jeweleryImage}`}
-                  alt={product.jeweleryName}
+                  src={`/public/${product.jewelryImage}`}
+                  alt={product.jewelryName}
                 />
-                <div className="product-name">{product.jeweleryName}</div>
-              </div>
-            ))}
-          </div>
-        )}
+                <div>{product.jewelryName}</div>
+              </Link>
+            </div>
+          ))}
+        </div>
       </section>
     </div>
   );

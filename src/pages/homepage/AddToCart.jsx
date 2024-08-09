@@ -10,12 +10,10 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:1000/api/jewelery/get_single_jewelery/${id}`
-        );
+        const response = await fetch(`http://localhost:5000/api/jewelry/${id}`);
         const data = await response.json();
         if (data.success) {
-          setProduct(data.jewelery);
+          setProduct(data.jewelry);
         } else {
           setError(data.message);
         }
@@ -62,18 +60,18 @@ const ProductDetail = () => {
       <div className="row">
         <div className="col-md-6">
           <img
-            src={`http://localhost:5000/jewelerys/${product.jeweleryImage}`}
-            alt={product.jeweleryName}
+            src={`http://localhost:5000/${product.jewelryImage}`}
+            alt={product.jewelryName}
             className="img-fluid rounded"
           />
         </div>
         <div className="col-md-6">
-          <h1 className="mb-4">{product.jeweleryName}</h1>
-          <p className="lead">{product.jeweleryDescription}</p>
+          <h1 className="mb-4">{product.jewelryName}</h1>
+          <p className="lead">{product.jewelryDescription}</p>
           <h3 className="text-success mb-4">
-            Price: NRs {product.jeweleryPrice}
+            Price: NRs {product.jewelryPrice}
           </h3>
-          <p className="text-muted">Category: {product.jeweleryCategory}</p>
+          <p className="text-muted">Category: {product.jewelryCategory}</p>
           <button className="add-to-cart-btn" onClick={handleAddToCart}>
             Add to Cart
           </button>

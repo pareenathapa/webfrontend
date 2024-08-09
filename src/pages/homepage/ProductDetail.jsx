@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Rating from "../../Components/Ratings/Ratings";
 import "../CSS/ProductDetails.css";
-import { AddToCartModal } from "../../Components/AddToCartModal";
+// import { AddToCartModal } from "../../Components/AddToCartModal";
 import { useCart } from "../../Components/Context/CartContext";
 import { UserReview } from "../../Components/UserReviews";
 
@@ -16,12 +16,10 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:1000/api/jewelery/get_single_jewelery/${id}`
-        );
+        const response = await fetch(`http://localhost:5000/api/jewelry/${id}`);
         const data = await response.json();
-        if (data.success) {
-          setProduct(data.jewelery);
+        if (response.status) {
+          setProduct(data.data);
         } else {
           setError(data.message);
         }
@@ -74,19 +72,19 @@ const ProductDetail = () => {
       <div className="row d-flex align-item-center justify-content-center">
         <div className="col-md-5">
           <img
-            src={`http://localhost:1000/jewelerys/${product.jeweleryImage}`}
-            alt={product.jeweleryName}
+            src={`http://localhost:5000/${product.jewelryImage}`}
+            alt={product.jewelryName}
             className="img-fluid rounded product-img"
           />
         </div>
         <div className="col-md-6 p-5">
           <h1 className="product-title text-capitalize">
-            {product.jeweleryName}
+            {product.jewelryName}
           </h1>
-          <p className="muted">{product.jeweleryDescription}</p>
-          <p className="">Price Nrs:{product.jeweleryPrice}</p>
+          <p className="muted">{product.jewelryDescription}</p>
+          <p className="">Price Nrs:{product.jewelryPrice}</p>
           <p className="text-muted product-category">
-            Category: {product.jeweleryCategory}
+            Category: {product.jewelryCategory}
           </p>
           <Rating productRating={4} />
           <button

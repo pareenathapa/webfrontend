@@ -9,12 +9,11 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/jewelery/get_all_jewelerys"
-        );
+        const response = await fetch("http://localhost:5000/api/jewelry/");
         const data = await response.json();
+        console.log(`apple${data}`);
         if (data.success) {
-          setProducts(data.jewelerys);
+          setProducts(data.data);
         } else {
           console.error(data.message);
         }
@@ -53,10 +52,10 @@ const Home = () => {
             <div key={product._id} className="product-item">
               <Link to={`/product/${product._id}`}>
                 <img
-                  src={`/public/jewelerys/${product.jeweleryImage}`}
-                  alt={product.jeweleryName}
+                  src={`/public/${product.jewelryImage}`}
+                  alt={product.jewelryName}
                 />
-                <div>{product.jeweleryName}</div>
+                <div>{product.jewelryName}</div>
               </Link>
             </div>
           ))}
