@@ -6,14 +6,18 @@ import logo from "../Assets/logo.png";
 import cart from "../Assets/cart.png";
 import { useCart } from "../Context/CartContext";
 import { navigation } from "../../utills/Constants";
+import { useUserDetails } from "../Context";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const router = useLocation();
+  // const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
   const { cartProduct } = useCart();
+
+  const { userDetails } = useUserDetails();
+  const userLen = Object?.keys(userDetails)?.length;
 
   const handleNavigation = (path) => {
     navigate(path);
@@ -21,12 +25,6 @@ const Navbar = () => {
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    setIsLoggedIn(false);
   };
 
   return (
@@ -49,17 +47,26 @@ const Navbar = () => {
         ))}
       </ul>
       <div className="nav-login-cart">
-        {isLoggedIn ? (
+        {userLen ? (
           <div className="nav-user">
-            <button onClick={toggleDropdown}>Hi, Username</button>
+            <button onClick={toggleDropdown}>
+              Hi, {userDetails?.firstName}
+            </button>
             {showDropdown && (
-              <div className="dropdown">
-                <button onClick={handleLogout}>Logout</button>
+              <div className="dropdown d-flex flex-column">
+                <button
+                  onClick={() => handleNavigation("/profile")}
+                  className="mt-2"
+                >
+                  View Profile
+                </button>
               </div>
             )}
           </div>
         ) : (
-          <button onClick={() => handleNavigation("/login")}>Login</button>
+          <>
+            <button onClick={() => handleNavigation("/login")}>Login</button>
+          </>
         )}
         <div className="cart-box">
           <div className="product-number">{cartProduct?.length}</div>

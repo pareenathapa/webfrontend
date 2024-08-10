@@ -1,0 +1,24 @@
+.main {
+  padding-left: 30px;
+  margin-top: 50px;
+}
+.profile-container {
+  padding: 15px 15px;
+  /* border-radius: 10px; */
+  max-width: 1240px;
+  border: 1px solid #ddd5d5;
+  background-color: #eff0f4;
+  color: #575252f7;
+  font-size: 16px;
+}
+.detail-container {
+  font-size: 16px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #cdc9c9 !important;
+  padding: 8px;
+}
+
+.user-detail-item {
+  font-weight: 500 !important;
+  color: #000;
+}

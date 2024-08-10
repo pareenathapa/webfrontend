@@ -1,8 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "react-toastify/dist/ReactToastify.css";
-// import Cart from "./pages/homepage/AddToCart";
-// import Home from "../../pages/homepage";
 
 import { CartProductList } from "../CartProductList/CartProductList";
 import React, { useState } from "react";
@@ -14,6 +12,7 @@ import Register from "../../pages/register/Register";
 import Login from "../../pages/login/Login";
 import AdminDashboard from "../../pages/admin/AdminDashboard";
 import AdminUpdateProduct from "../../pages/admin/AdminUpdateProduct";
+import { UserProfile } from "../../pages/profile";
 
 export const RoutesList = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -59,6 +58,7 @@ export const RoutesList = () => {
           path="/admin/jewelery/update/:id"
           element={<AdminUpdateProduct />}
         />
+        <Route path="/profile" element={<UserProfile />} />
       </Routes>
     </Router>
   );

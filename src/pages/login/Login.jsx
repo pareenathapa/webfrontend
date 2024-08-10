@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUserApi } from "../../apis/Api";
 import { Layout } from "../../Components/Layout/Layout";
+import { useUserDetails } from "../../Components/Context";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,6 +14,8 @@ const Login = () => {
 
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
+  const { addUserDetails } = useUserDetails();
 
   // Form validation function
   const validate = () => {
@@ -61,11 +63,9 @@ const Login = () => {
           // 1. Set token
           localStorage.setItem("token", res.data.token);
 
-          // 2. Convert JSON object
-          const convertedData = JSON.stringify(res.data.userData);
+          // setting user details in context
+          addUserDetails(res.data.userData);
 
-          // 3. Set userData in local storage
-          localStorage.setItem("user", convertedData);
           navigate("/");
         }
       })
