@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import{Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginUserApi } from "../../apis/Api";
+import { Layout } from "../../Components/Layout/Layout";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -66,7 +67,6 @@ const Login = () => {
           // 3. Set userData in local storage
           localStorage.setItem("user", convertedData);
           navigate("/");
-
         }
       })
       .catch((error) => {
@@ -77,37 +77,39 @@ const Login = () => {
 
   // API call function
   return (
-    <div style={styles.loginContainer}>
-      <h1 style={styles.loginTitle}>Login into your account</h1>
-      <form style={styles.loginForm}>
-        <label style={styles.loginLabel}>Enter your Email</label>
-        <input
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-          style={styles.loginInput}
-          placeholder="Email"
-        />
-        {emailError && <p style={styles.loginError}>{emailError}</p>}
-        <label style={styles.loginLabel}>Enter your password</label>
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          style={styles.loginInput}
-          placeholder="Password"
-        />
-        {passwordError && <p style={styles.loginError}>{passwordError}</p>}
-        <button onClick={handleSubmit} style={styles.loginButton}>
-          Log In
-        </button>
-      </form>
-      <h4 className="mt-3">
-        Create your account.{" "}
-        <Link to="/register" href="http://">
-          Register
-        </Link>
-      </h4>
-      <ToastContainer />
-    </div>
+    <Layout>
+      <div style={styles.loginContainer}>
+        <h1 style={styles.loginTitle}>Login into your account</h1>
+        <form style={styles.loginForm}>
+          <label style={styles.loginLabel}>Enter your Email</label>
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            style={styles.loginInput}
+            placeholder="Email"
+          />
+          {emailError && <p style={styles.loginError}>{emailError}</p>}
+          <label style={styles.loginLabel}>Enter your password</label>
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            style={styles.loginInput}
+            placeholder="Password"
+          />
+          {passwordError && <p style={styles.loginError}>{passwordError}</p>}
+          <button onClick={handleSubmit} style={styles.loginButton}>
+            Log In
+          </button>
+        </form>
+        <h4 className="mt-3">
+          Create your account.{" "}
+          <Link to="/register" href="http://">
+            Register
+          </Link>
+        </h4>
+        <ToastContainer />
+      </div>
+    </Layout>
   );
 };
 
@@ -150,7 +152,7 @@ const styles = {
     color: "#FFFFFF", // White text
     border: "none",
     borderRadius: "4px",
-    cursor: "pointer",  
+    cursor: "pointer",
     transition: "background-color 0.3s ease",
   },
   loginButtonHover: {

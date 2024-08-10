@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "reactstrap";
 import { useCart } from "../Context/CartContext";
+import { Layout } from "../Layout/Layout";
 
 export const CartProductList = () => {
   const { cartProduct, removeFromCart } = useCart();
@@ -58,13 +59,15 @@ export const CartProductList = () => {
   }
 
   return (
-    <div className="container d-flex align-items-center justify-content-center p-2 bg-light h-100">
-      <div className="w-100">
-        <div className="d-flex flex-column align-items-center justify-content-center ">
-          <h2 className="text-end">Your Product list</h2>
-          {productMapping}
+    <Layout>
+      <div className="container d-flex align-items-center justify-content-center p-2 bg-light h-100">
+        <div className="w-100">
+          <div className="d-flex flex-column align-items-center justify-content-center ">
+            <h2 className="text-end">Your Product list</h2>
+            {productMapping}
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
