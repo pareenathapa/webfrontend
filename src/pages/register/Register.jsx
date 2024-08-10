@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { registerUserApi } from "../../apis/Api";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { Layout } from "../../Components/Layout/Layout";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -90,14 +91,14 @@ const Register = () => {
       lastName: lastName,
       email: email,
       password: password,
-      confirmPassword: confirmPassword
+      confirmPassword: confirmPassword,
     };
     try {
       const res = await registerUserApi(data);
-      if(res.data.success === false){
-        toast.error(res.data.message)
-      }else{
-        toast.success(res.data.message)
+      if (res.data.success === false) {
+        toast.error(res.data.message);
+      } else {
+        toast.success(res.data.message);
       }
     } catch (error) {
       toast.error("An error occurred. Please try again later.");
@@ -105,8 +106,8 @@ const Register = () => {
   };
 
   const styles = {
-    link:{
-      color: "#005f73"
+    link: {
+      color: "#005f73",
     },
     registerButton: {
       padding: "10px",
@@ -156,67 +157,69 @@ const Register = () => {
   };
 
   return (
-    <div style={styles.registerContainer}>
-      <h1 style={styles.registerTitle}>Create an Account </h1>
-      <form onSubmit={handleSubmit} style={styles.registerForm}>
-        <label style={styles.registerLabel}>First name:</label>
-        <input
-          onChange={handleFirstname}
-          type="text"
-          style={styles.registerInput}
-          placeholder="Enter your first name"
-        />
-        {firstNameError && <p style={styles.error}>{firstNameError}</p>}
+    <Layout>
+      <div style={styles.registerContainer}>
+        <h1 style={styles.registerTitle}>Create an Account </h1>
+        <form onSubmit={handleSubmit} style={styles.registerForm}>
+          <label style={styles.registerLabel}>First name:</label>
+          <input
+            onChange={handleFirstname}
+            type="text"
+            style={styles.registerInput}
+            placeholder="Enter your first name"
+          />
+          {firstNameError && <p style={styles.error}>{firstNameError}</p>}
 
-        <label style={styles.registerLabel}>Last name:</label>
-        <input
-          onChange={handleLastname}
-          type="text"
-          style={styles.registerInput}
-          placeholder="Enter your last name"
-        />
-        {lastNameError && <p style={styles.error}>{lastNameError}</p>}
+          <label style={styles.registerLabel}>Last name:</label>
+          <input
+            onChange={handleLastname}
+            type="text"
+            style={styles.registerInput}
+            placeholder="Enter your last name"
+          />
+          {lastNameError && <p style={styles.error}>{lastNameError}</p>}
 
-        <label style={styles.registerLabel}>Email Address:</label>
-        <input
-          onChange={handleEmail}
-          type="email"
-          style={styles.registerInput}
-          placeholder="Enter your email address"
-        />
-        {emailError && <p style={styles.error}>{emailError}</p>}
+          <label style={styles.registerLabel}>Email Address:</label>
+          <input
+            onChange={handleEmail}
+            type="email"
+            style={styles.registerInput}
+            placeholder="Enter your email address"
+          />
+          {emailError && <p style={styles.error}>{emailError}</p>}
 
-        <label style={styles.registerLabel}>Password:</label>
-        <input
-          onChange={handlePassword}
-          type="password"
-          style={styles.registerInput}
-          placeholder="Enter your password"
-        />
-        {passwordError && <p style={styles.error}>{passwordError}</p>}
+          <label style={styles.registerLabel}>Password:</label>
+          <input
+            onChange={handlePassword}
+            type="password"
+            style={styles.registerInput}
+            placeholder="Enter your password"
+          />
+          {passwordError && <p style={styles.error}>{passwordError}</p>}
 
-        <label style={styles.registerLabel}>Confirm Password:</label>
-        <input
-          onChange={handleConfirmPassword}
-          type="password"
-          style={styles.registerInput}
-          placeholder="Enter your confirm password"
-        />
-        {confirmPasswordError && (
-          <p style={styles.error}>{confirmPasswordError}</p>
-        )}
+          <label style={styles.registerLabel}>Confirm Password:</label>
+          <input
+            onChange={handleConfirmPassword}
+            type="password"
+            style={styles.registerInput}
+            placeholder="Enter your confirm password"
+          />
+          {confirmPasswordError && (
+            <p style={styles.error}>{confirmPasswordError}</p>
+          )}
 
-        <button onClick={handleSubmit} style={styles.registerButton}>
-          Register
-        </button>
-      </form>
-      <h4 className="mt-3">
-        Create your account.{" "}
-        <Link to="/login" href="http://">
-          Login
-        </Link>
-      </h4>
-    </div>
+          <button onClick={handleSubmit} style={styles.registerButton}>
+            Register
+          </button>
+        </form>
+        <h4 className="mt-3">
+          Create your account.{" "}
+          <Link to="/login" href="http://">
+            Login
+          </Link>
+        </h4>
+      </div>
+    </Layout>
   );
 };
 

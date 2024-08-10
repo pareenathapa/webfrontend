@@ -32,7 +32,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div
-        className="nav-logo d-flex align-items-center justify-content-center"
+        className="nav-logo d-flex justify-content-center"
         onClick={() => handleNavigation("/")}
       >
         <img src={logo} alt="GemChase Logo" />
