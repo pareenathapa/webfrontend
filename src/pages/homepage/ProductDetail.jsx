@@ -5,6 +5,7 @@ import "../CSS/ProductDetails.css";
 // import { AddToCartModal } from "../../Components/AddToCartModal";
 import { useCart } from "../../Components/Context/CartContext";
 import { UserReview } from "../../Components/UserReviews";
+import { Layout } from "../../Components/Layout/Layout";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -16,7 +17,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/jewelry/${id}`);
+        const response = await fetch(`http://localhost:1000/api/jewelry/${id}`);
         const data = await response.json();
         if (response.status) {
           setProduct(data.data);
@@ -68,37 +69,39 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className=" mt-5">
-      <div className="row d-flex align-item-center justify-content-center">
-        <div className="col-md-5">
-          <img
-            src={`http://localhost:5000/${product.jewelryImage}`}
-            alt={product.jewelryName}
-            className="img-fluid rounded product-img"
-          />
-        </div>
-        <div className="col-md-6 p-5">
-          <h1 className="product-title text-capitalize">
-            {product.jewelryName}
-          </h1>
-          <p className="muted">{product.jewelryDescription}</p>
-          <p className="">Price Nrs:{product.jewelryPrice}</p>
-          <p className="text-muted product-category">
-            Category: {product.jewelryCategory}
-          </p>
-          <Rating productRating={4} />
-          <button
-            className="btn btn-primary add-to-cart-btn mt-2 "
-            onClick={() => addToCart(product)}
-          >
-            Add to Cart
-          </button>
-          <div className="mt-3">
-            <UserReview />
+    <Layout>
+      <div className=" mt-5">
+        <div className="row d-flex align-item-center justify-content-center">
+          <div className="col-md-5">
+            <img
+              src={`http://localhost:1000/${product.jewelryImage}`}
+              alt={product.jewelryName}
+              className="img-fluid rounded product-img"
+            />
+          </div>
+          <div className="col-md-6 p-5">
+            <h1 className="product-title text-capitalize">
+              {product.jewelryName}
+            </h1>
+            <p className="muted">{product.jewelryDescription}</p>
+            <p className="">Price Nrs:{product.jewelryPrice}</p>
+            <p className="text-muted product-category">
+              Category: {product.jewelryCategory}
+            </p>
+            <Rating productRating={4} />
+            <button
+              className="btn btn-primary add-to-cart-btn mt-2 "
+              onClick={() => addToCart(product)}
+            >
+              Add to Cart
+            </button>
+            <div className="mt-3">
+              <UserReview />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

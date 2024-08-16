@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../App.css";
 import earring from "../../Components/Assets/Earring.png";
 import ring from "../../Components/Assets/gold ring.png";
@@ -33,6 +33,28 @@ const jewelryData = [
 ];
 
 const Jewelry = () => {
+  const [products, setProducts] = useState([]);
+
+  const [filteredProduct, setFilteredProduct] = useState([]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:1000/api/jewelry/");
+        const data = await response.json();
+        console.log(`apple`, JSON.stringify(data));
+        if (data) {
+          setProducts(data.data);
+        } else {
+          console.error(data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   const [filter, setFilter] = useState("All");
 
   const handleFilterChange = (type) => {
@@ -41,8 +63,10 @@ const Jewelry = () => {
 
   const filteredJewelry =
     filter === "All"
-      ? jewelryData
-      : jewelryData.filter((item) => item.type === filter);
+      ? products
+      : products.filter((item) => item.jewelryCategory === filter);
+
+  console.log("filteredJewelry", filteredJewelry);
 
   return (
     <Layout>
@@ -61,17 +85,26 @@ const Jewelry = () => {
           </button>
           <button onClick={() => handleFilterChange("Bangles")}>Bangles</button>
         </div>
-        <div className="card-deck">
-          {filteredJewelry.map((jewel) => (
-            <div className="card" key={jewel.id}>
-              <img src={jewel.image} alt={jewel.name} />
-              <div className="card-content">
-                <h3>{jewel.name}</h3>
-                <p>{jewel.type}</p>
+        {filteredJewelry?.length ? (
+          <div className="card-deck">
+            {filteredJewelry.map((jewel) => (
+              <div className="card" key={jewel._id}>
+                <img
+                  src={`http://localhost:1000/${jewel.jewelryImage}`}
+                  alt={jewel.name}
+                />
+                <div className="card-content">
+                  <h3>{jewel.jewelryName}</h3>
+                  <p>{jewel.jewelryCategory}</p>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="d-flex align-items-center justify-content-center">
+            This category has no data
+          </div>
+        )}
       </div>
     </Layout>
   );
