@@ -13,6 +13,7 @@ import Login from "../../pages/login/Login";
 import AdminDashboard from "../../pages/admin/AdminDashboard";
 import AdminUpdateProduct from "../../pages/admin/AdminUpdateProduct";
 import { UserProfile } from "../../pages/profile";
+import { CheckoutPage } from "../../pages/homepage/Checkout";
 
 export const RoutesList = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -59,6 +60,7 @@ export const RoutesList = () => {
           element={<AdminUpdateProduct />}
         />
         <Route path="/profile" element={<UserProfile />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
     </Router>
   );

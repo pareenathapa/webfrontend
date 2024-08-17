@@ -32,6 +32,7 @@ export const UserReview = () => {
     setUserReviews(userTotalReviews);
     toast.success("Your review added successfully");
     setFormItems({ name: "", email: "", reviews: "" });
+    setOpenReviewForm(false);
   };
 
   useEffect(() => {
@@ -51,7 +52,7 @@ export const UserReview = () => {
           size="sm"
           onClick={() => setOpenReviewForm(!openReviewForm)}
         >
-          Add your review
+          {openReviewForm ? "Close Form" : "Add your review"}
         </span>
       </div>
       {openReviewForm ? (
