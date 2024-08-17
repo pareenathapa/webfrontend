@@ -66,8 +66,6 @@ const Jewelry = () => {
       ? products
       : products.filter((item) => item.jewelryCategory === filter);
 
-  console.log("filteredJewelry", filteredJewelry);
-
   return (
     <Layout>
       <div className="jewelry-container">
